@@ -6,7 +6,7 @@ import gradio as gr
 from modules import scripts
 from modules.ui_components import FormRow
 
-TITLE = "My Size Presets"
+TITLE = "My Personal Image Size Presets"
 SD15_512_PRESETS = "SD 1.5 Presets min. 512px", [
     "512x768 (2:3)",
     "512x672 (3:4)",
