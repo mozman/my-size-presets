@@ -7,7 +7,18 @@ from modules import scripts
 from modules.ui_components import FormRow
 
 TITLE = "My Personal Image Size Presets"
-SD15_512_PRESETS = "SD 1.5 Presets min. 512px", [
+MIN_WIDTH = 120
+HEADER =  [
+    "Presets",
+    "Portrait",
+    "Portrait",
+    "Square",
+    "Landscape",
+    "Landscape",
+    "Widescreen",
+]
+
+SD15_512_PRESETS = "SD15 - 512px", [
     "512x768 (2:3)",
     "512x672 (3:4)",
     "512x512 (1:1)",
@@ -15,7 +26,7 @@ SD15_512_PRESETS = "SD 1.5 Presets min. 512px", [
     "768x512 (3:2)",
     "896x512 (16:9)",
 ]
-SD15_640_PRESETS = "SD 1.5 Presets min. 640px", [
+SD15_640_PRESETS = "SD15 - 640px", [
     "640x960 (2:3)",
     "640x848 (3:4)",
     "640x640 (1:1)",
@@ -23,7 +34,7 @@ SD15_640_PRESETS = "SD 1.5 Presets min. 640px", [
     "960x640 (3:2)",
     "1136x640 (16:9)",
 ]
-SDXL_PRESETS = "SDXL Presets", [
+SDXL_PRESETS = "SDXL", [
     "832x1216 (2:3)",
     "896x1152 (3:4)",
     "1024x1024 (1:1)",
@@ -60,10 +71,14 @@ class MySizePresets(scripts.Script):
         outputs = [wc, hc]
         with gr.Group():
             with gr.Accordion("My Size Presets", open=False):
+                with FormRow():
+                    for value in HEADER:
+                        gr.Button(value=value, interactive=False, min_width=MIN_WIDTH)
                 for label, presets in PRESETS:
                     with FormRow():
+                        gr.Button(value=label, min_width=MIN_WIDTH, interactive=False)
                         for value in presets:
-                            button = gr.Button(value=value)
+                            button = gr.Button(value=value, min_width=MIN_WIDTH)
                             button.click(
                                 fn=get_dimensions, inputs=[button], outputs=outputs
                             )
