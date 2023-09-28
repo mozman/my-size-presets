@@ -6,7 +6,7 @@ import gradio as gr
 from modules import scripts
 from modules.ui_components import FormRow
 
-TITLE = "My Personal Image Size Presets"
+TITLE = "My Image Size Presets"
 MIN_WIDTH = 120
 HEADER =  [
     "Presets",
@@ -49,7 +49,7 @@ PRESETS = [
 DEFAULT_WIDTH_HEIGHT = 512, 512
 
 
-class MySizePresets(scripts.Script):
+class MyImageSizePresets(scripts.Script):
     def __init__(self):
         self.t2i_w: gr.components.Slider | None = None
         self.t2i_h: gr.components.Slider | None = None
@@ -70,7 +70,7 @@ class MySizePresets(scripts.Script):
 
         outputs = [wc, hc]
         with gr.Group():
-            with gr.Accordion("My Size Presets", open=False):
+            with gr.Accordion(TITLE, open=False):
                 with FormRow():
                     for value in HEADER:
                         gr.Button(value=value, interactive=False, min_width=MIN_WIDTH)
